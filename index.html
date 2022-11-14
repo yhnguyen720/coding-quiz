@@ -11,17 +11,50 @@
 
     <!--starting page-->
     <div class="startingPage">
-        <div class="viewHighscore"> View Highscore </div>
-        <div class="Time:"> Time Left: </div>
-        <div class="title"> Coding Quiz Challenge </div>
-        <div class="info"> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds.</div>
-        <div class="startButton"><button> Start Quiz </button></div>
+        <h1 class="startingTitle"> Coding Quiz Challenge </h1>
+        <p1 class="info"> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds.</p1> <br>
+        <button class="startButton"> Start Quiz </button></div>
     </div>
         
     <!--questions pages-->
+    <div class="quizPage">
+        <header>
+            <div class="viewHighscore"> View Highscore </div>
+            <div class="timer">
+                <div class="timerText"> Time Left: </div>
+                <div class="timerDisplay"></div>
+            </div>
+        </header>
+        <section>
+            <div class="question"></div>
+            <div class="answerList"></div>
+        </section>
+        <footer>
+            <div class="rightWrong"></div>
+        </footer>
+    </div>
 
     <!--final score page-->
 
+    <div class="resultPage">
+        <h1 class="resultText"> All done! </h1>
+        <div class="scoreText"></div>
+        <div class="initial">
+            <form class="enterInitials"> Enter Initials: <input type = "text"></form>
+            <button class="submitInitials"> Submit </button>
+        </div>
+    </div>
+
     <!--highscores page-->
 
+    <div class="highscorePage">
+        <h1 class="highscoreText"> Highscores </h1>
+        <div class="highscoreList"></div> <br>
+        <button class="goBack"> Go Back </button>
+        <button class="clearHighscores"> Clear Highscores </button>
+        <button class="restartQuiz"> Restart Quiz </button> 
+    </div>
+
 </body>
+
+</html>
