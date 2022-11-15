@@ -9,25 +9,27 @@
 
 <body>
 
+    <!--header for all pages-->
+    <header>
+        <div class="viewHighscore"> View Highscore </div>
+        <div> Time Remaining: <span id="timer"> 60 </span> seconds </div>
+    </header>
+
     <!--starting page-->
     <div class="startingPage">
-        <h1 class="startingTitle"> Coding Quiz Challenge </h1>
-        <p1 class="info"> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds.</p1> <br>
-        <button class="startButton"> Start Quiz </button></div>
+        <h1> Coding Quiz Challenge </h1>
+        <p1> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds.</p1> <br>
+        <button id="startButton" class="btn"> Start Quiz </button></div>
     </div>
         
     <!--questions pages-->
     <div class="quizPage">
-        <header>
-            <div class="viewHighscore"> View Highscore </div>
-            <div class="timer">
-                <div class="timerText"> Time Left: </div>
-                <div class="timerDisplay"></div>
-            </div>
-        </header>
         <section>
-            <div class="question"></div>
-            <div class="answerList"></div>
+            <h2 class="question"></h2>
+            <button id="answer1" class="btn"></button>
+            <button id="answer2" class="btn"></button>
+            <button id="answer3" class="btn"></button>
+            <button id="answer4" class="btn"></button>
         </section>
         <footer>
             <div class="rightWrong"></div>
@@ -41,7 +43,7 @@
         <div class="scoreText"></div>
         <div class="initial">
             <form class="enterInitials"> Enter Initials: <input type = "text"></form>
-            <button class="submitInitials"> Submit </button>
+            <button id="submitInitials" class="btn"> Submit </button>
         </div>
     </div>
 
@@ -50,9 +52,9 @@
     <div class="highscorePage">
         <h1 class="highscoreText"> Highscores </h1>
         <div class="highscoreList"></div> <br>
-        <button class="goBack"> Go Back </button>
-        <button class="clearHighscores"> Clear Highscores </button>
-        <button class="restartQuiz"> Restart Quiz </button> 
+        <button id="goBack" class="btn"> Go Back </button>
+        <button id="clearHighscores" class="btn"> Clear Highscores </button>
+        <button id="restartQuiz" class="btn"> Restart Quiz </button> 
     </div>
 
 </body>
