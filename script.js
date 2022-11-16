@@ -1,83 +1,136 @@
 //set up array for quiz questions and answer choices
 var questionBank = [
+    
     {
-        prompt: "What does HTML stand for?",
-        options: ["<HighText Machine Language>", "<HyperText and Links Markup Language>", "<HyperText Markup Language>", "<None of these>"],
+        question: "What does HTML stand for?",
+        choices: ["<HighText Machine Language>", "<HyperText and Links Markup Language>", "<HyperText Markup Language>", "<None of these>"],
         answer: "<HyperText Markup Language>"
     },
 
-    {
-        prompt: "What is the correct sequence of HTML tags for starting a webpage?",
-        options: ["<Head, Title, HTML, body>", "<HTML, Body, Title, Head>", "<HTML, Head, Title, Body>", "<HTML, Head, Title, Body>"],
+   {
+        question: "What is the correct sequence of HTML tags for starting a webpage?",
+        choices: ["<Head, Title, HTML, body>", "<HTML, Body, Title, Head>", "<HTML, Head, Title, Body>", "<HTML, Head, Title, Body>"],
         answer: "<HTML, Head, Title, Body>"
     },
 
     {
-        prompt: "Which of the following element is responsible for making the text bold in HTML?",
-        options: ["<<pre>>", "<<a>>", "<<b>>", "<<br>>"],
+        question: "Which of the following element is responsible for making the text bold in HTML?",
+        choices: ["<<pre>>", "<<a>>", "<<b>>", "<<br>>"],
         answer: "<<b>>"
     },
 
     {
-        prompt: "Which of the following tag is used for inserting the largest heading in HTML?",
-        options: ["<<h3>>", "<<h1>>", "<<h5>>", "<<h6>>"],
+        question: "Which of the following tag is used for inserting the largest heading in HTML?",
+        choices: ["<<h3>>", "<<h1>>", "<<h5>>", "<<h6>>"],
         answer: "<<h1>>"
     },
 
     {
-        prompt: "Which of the following tag is used to insert a line-break in HTML?",
-        options: ["<<br>>", "<<a>>", "<<pre>>", "<<b>>"],
+        question: "Which of the following tag is used to insert a line-break in HTML?",
+        choices: ["<<br>>", "<<a>>", "<<pre>>", "<<b>>"],
         answer: "<<br>>"
     },
 
     {
-        prompt: "How to create an unordered list in HTML?",
-        options: ["<<ul>>", "<<ol>>", "<<li>>", "<<i>>"],
+        question: "How to create an unordered list in HTML?",
+        choices: ["<<ul>>", "<<ol>>", "<<li>>", "<<i>>"],
         answer: "<<ul>>"
     },
 
     {
-        prompt: "How to create an ordered list in HTML?",
-        options: ["<<ul>>", "<<ol>>", "<<li>>", "<<i>>"],
+        question: "How to create an ordered list in HTML?",
+        choices: ["<<ul>>", "<<ol>>", "<<li>>", "<<i>>"],
         answer: "<<ol>>"
     },
 
     {
-        prompt: "Which of the following element is responsible for making the text italic in HTML?",
-        options: ["<<i>>", "<<italic>>", "<<it>>", "<<pre>>"],
+        question: "Which of the following element is responsible for making the text italic in HTML?",
+        choices: ["<<i>>", "<<italic>>", "<<it>>", "<<pre>>"],
         answer: "<<i>>"
     },  
 ];
 
 //select DOM elements
-var timerEl = document.querySelector("#timer");
 var questionAskedEl = document.querySelector("#questionAsked");
-var answerChoicesEl = document.querySelector("#answerChoices");
+var answerChoiceA = document.querySelector("#answerChoiceA");
+var answerChoiceB = document.querySelector("#answerChoiceB");
+var answerChoiceC = document.querySelector("#answerChoiceC");
+var answerChoiceD = document.querySelector("#answerChoiceD");
 var rightWrongEl = document.querySelector("#rightWrong");
+
 var scoreFinalEl = document.querySelector("#scoreFinal");
+var timerEl = document.querySelector("#timer");
 var nameEl = document.querySelector("#name");
 var displayHighscoresEl = document.querySelector("#displayHighscores");
 var highscoresListEl = document.querySelector("#highscoresList");
+
 var startBtn = document.querySelector("#startButton");
 var submitInitialsBtn = document.querySelector("#submitInitials");
 var goBackBtn = document.querySelector("#goBack");
 var clearHighscoresBtn = document.querySelector("#clearHighscores");
 var restartQuizBtn = document.querySelector("#restartQuiz");
+
 var startingPageEl = document.querySelector("#startingPage");
 var quizPageEl = document.querySelector("#quizPage");
 var resultPageEl = document.querySelector("#resultPage");
 var highscoresPageEl = document.querySelector("#highscoresPage");
 
+var questionIndex = 0;
+var correctNum = 0;
+var totalTime = 30;
+var scoreResult;
+
 //start quiz and change from starting page to quiz page
 function startQuiz(){
    startingPageEl.setAttribute("class", "hide");
    quizPageEl.removeAttribute("class");
+   displayQuestion();
 }
 
 //display questions and answer choices from question bank
 function displayQuestion(){
-   
-
+    questionAskedEl.textContent = questionBank[questionIndex].question;
+    answerChoiceA.textContent = questionBank[questionIndex].choices[0];
+    answerChoiceB.textContent = questionBank[questionIndex].choices[1];
+    answerChoiceC.textContent = questionBank[questionIndex].choices[2];
+    answerChoiceD.textContent = questionBank[questionIndex].choices[3];
 }
 
+//check answer and display right or wrong
+function checkAnswer(answer){
+    if (questionBank[questionIndex].answer === questionBank[questionIndex].choices[answer]) {
+        correctNum++;
+        alert("Correct!");
+    } else {
+        totalTime -= 5;
+        alert("Wrong!");
+    }
+
+    
+    questionIndex++;
+    if (questionIndex < questionBank.length) {
+        displayQuestion();
+    } else {
+        gameOver();
+    }
+}
+
+//display result page when time or questions run out
+function gameOver(){
+    quizPageEl.setAttribute("class", "hide");
+    resultPageEl.removeAttribute("class");
+}
+
+
+//functions to check answer when you click on an answer button
+function selectA() {checkAnswer(0);}
+function selectB() {checkAnswer(1);}
+function selectC() {checkAnswer(2);}
+function selectD() {checkAnswer(3);}
+
 startBtn.addEventListener("click", startQuiz);
+answerChoiceA.addEventListener("click", selectA);
+answerChoiceB.addEventListener("click", selectB);
+answerChoiceC.addEventListener("click", selectC);
+answerChoiceD.addEventListener("click", selectD);
+
