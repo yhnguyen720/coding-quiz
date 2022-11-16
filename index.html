@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title> Coding Quiz Challenge </title>
 </head>
 
@@ -11,51 +12,49 @@
 
     <!--header for all pages-->
     <header>
-        <div class="viewHighscore"> View Highscore </div>
+        <div id="displayHighscores"></div>
         <div> Time Remaining: <span id="timer"> 60 </span> seconds </div>
     </header>
 
     <!--starting page-->
-    <div class="startingPage">
+    <div id="startingPage">
         <h1> Coding Quiz Challenge </h1>
         <p1> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds.</p1> <br>
         <button id="startButton" class="btn"> Start Quiz </button></div>
     </div>
         
     <!--questions pages-->
-    <div class="quizPage">
-        <section>
-            <h2 class="question"></h2>
-            <button id="answer1" class="btn"></button>
-            <button id="answer2" class="btn"></button>
-            <button id="answer3" class="btn"></button>
-            <button id="answer4" class="btn"></button>
-        </section>
-        <footer>
-            <div class="rightWrong"></div>
-        </footer>
+    <div id="quizPage" class="hide">
+        <h2 id="questionAsked"></h2>
+        <div class="answersContainer">
+            <p><button id="answerChoiceA"></button></p>
+            <p><button id="answerChoiceB"></button></p>
+            <p><button id="answerChoiceC"></button></p>
+            <p><button id="answerChoiceD"></button></p>
+        </div>
+        <h3 id="rightWrong"></h3>
     </div>
 
     <!--final score page-->
 
-    <div class="resultPage">
-        <h1 class="resultText"> All done! </h1>
-        <div class="scoreText"></div>
-        <div class="initial">
-            <form class="enterInitials"> Enter Initials: <input type = "text"></form>
-            <button id="submitInitials" class="btn"> Submit </button>
-        </div>
+    <div id="resultPage" class="hide">
+        <h2> All done! </h2>
+        <p> Your final score is: <span id="scoreFinal"></span></p> 
+        <p> Please enter your initials: <input type="text" id="name"></p>
+        <button id="submitInitials" class="btn"> Submit </button>
     </div>
 
     <!--highscores page-->
 
-    <div class="highscorePage">
-        <h1 class="highscoreText"> Highscores </h1>
-        <div class="highscoreList"></div> <br>
+    <div id="highscoresPage" class="hide">
+        <h2> Highscores </h2>
+        <div id="highscoresList"></div> <br>
         <button id="goBack" class="btn"> Go Back </button>
         <button id="clearHighscores" class="btn"> Clear Highscores </button>
         <button id="restartQuiz" class="btn"> Restart Quiz </button> 
     </div>
+
+    <script src="./script.js"></script>
 
 </body>
 
