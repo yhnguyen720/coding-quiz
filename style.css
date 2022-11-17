@@ -1,0 +1,32 @@
+body{
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-right: 300px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    border: 5px dashed #ffccff;
+    color: purple;
+
+    padding: 50px;
+}
+
+.hide {
+    display: none;
+}
+
+header {
+    padding-bottom: 20px;
+}
+
+#info {
+    line-height: 2;
+}
+
+#startContainer {
+    padding-top: 20px;
+}
+
+.btn {
+    border-color: purple;
+    color: purple;
+}
