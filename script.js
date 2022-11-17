@@ -50,7 +50,7 @@ var questionBank = [
     },  
 ];
 
-//select DOM elements
+//select DOM elements and create variables
 var questionAskedEl = document.querySelector("#questionAsked");
 var answerChoiceA = document.querySelector("#answerChoiceA");
 var answerChoiceB = document.querySelector("#answerChoiceB");
@@ -61,14 +61,13 @@ var rightWrongEl = document.querySelector("#rightWrong");
 var scoreFinalEl = document.querySelector("#scoreFinal");
 var timerEl = document.querySelector("#timer");
 var nameEl = document.querySelector("#name");
-var displayHighscoresEl = document.querySelector("#displayHighscores");
 var highscoresListEl = document.querySelector("#highscoresList");
 
 var startBtn = document.querySelector("#startButton");
 var submitInitialsBtn = document.querySelector("#submitInitials");
-var goBackBtn = document.querySelector("#goBack");
 var clearHighscoresBtn = document.querySelector("#clearHighscores");
 var restartQuizBtn = document.querySelector("#restartQuiz");
+var nextQuestionBtn = document.querySelector("#nextQuestion");
 
 var startingPageEl = document.querySelector("#startingPage");
 var quizPageEl = document.querySelector("#quizPage");
@@ -85,7 +84,17 @@ function startQuiz(){
    startingPageEl.setAttribute("class", "hide");
    quizPageEl.removeAttribute("class");
    displayQuestion();
-}
+
+    //set timer and rule for ending game when timer runs out
+    var timer = setInterval(function(){
+        totalTime--;
+        timerEl.textContent = totalTime;
+        if (totalTime <= 0) {
+            clearInterval(timer);
+            gameOver();
+        }},1000);
+
+}   
 
 //display questions and answer choices from question bank
 function displayQuestion(){
@@ -103,24 +112,33 @@ function checkAnswer(answer){
         alert("Correct!");
     } else {
         totalTime -= 5;
-        alert("Wrong!");
+        alert("Wrong");
     }
 
-    
-    questionIndex++;
-    if (questionIndex < questionBank.length) {
+     //repeat for next questions until questions or time run out
+     questionIndex++;
+     if (questionIndex < questionBank.length){
         displayQuestion();
-    } else {
-        gameOver();
-    }
+     } else {
+         gameOver();
+     } 
 }
 
 //display result page when time or questions run out
 function gameOver(){
     quizPageEl.setAttribute("class", "hide");
     resultPageEl.removeAttribute("class");
+    scoreFinalEl.textContent = correctNum;
 }
 
+function highScore() {
+    if (nameEl.value === "") {
+        alert("Please enter your initials");
+        return;
+    }
+    resultPageEl.setAttribute("class", "hide");
+    highscoresPageEl.removeAttribute("class");
+}
 
 //functions to check answer when you click on an answer button
 function selectA() {checkAnswer(0);}
@@ -128,9 +146,10 @@ function selectB() {checkAnswer(1);}
 function selectC() {checkAnswer(2);}
 function selectD() {checkAnswer(3);}
 
+//functions called on click
 startBtn.addEventListener("click", startQuiz);
 answerChoiceA.addEventListener("click", selectA);
 answerChoiceB.addEventListener("click", selectB);
 answerChoiceC.addEventListener("click", selectC);
 answerChoiceD.addEventListener("click", selectD);
-
+submitInitialsBtn.addEventListener("click", highScore);
